@@ -1,10 +1,14 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import './menu-item.styles.scss';
 
 //history and match parameters only available here due to use of withRouter HOF
-const MenuItem = ({ item, history, match}) => (
+const MenuItem = ({ item, history, match}) => {
+const navigate = useNavigate();
+const onNavigateHandler = () => navigate(item.linkUrl);
+return(
     
-            <div className= {`${item.size} menu-item`} onClick={()=> history.push(`${match.url}${item.linkUrl}`)}>
+            <div className= {`${item.size} menu-item`} onClick={onNavigateHandler}>
                 <div className="background-image" 
                      style=
                     {{
@@ -17,6 +21,6 @@ const MenuItem = ({ item, history, match}) => (
             </div>
            
             
-)
+)}
 
 export default MenuItem;
